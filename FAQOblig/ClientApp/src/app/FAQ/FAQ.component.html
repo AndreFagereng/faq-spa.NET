@@ -1,0 +1,65 @@
+<div><h2 style="text-align:center;">Ofte stilte spørsmål</h2></div>
+<div style="text-align:center;"><p>Oversikt over alle spørsmål som er ofte stilt</p></div>
+<div class="col-md-6 text-center">
+  <h2>Ofte stilte spørsmål</h2>
+  <hr /> 
+  <div class="panel-group" id="faqAccordion">
+    <div class="panel panel-default " (click)="showBySubject('Account')">
+      <div class="panel-heading accordion-toggle question-toggle collapsed navigateActive active" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+        <h4 class="panel-title" id="nei">
+          <button style="border:none !important; background-color:transparent !important;font-size:20px;" class="ing">Bruker</button>
+        </h4>
+      </div>
+    </div>
+    <div class="panel panel-default" (click)="showBySubject('Customer')">
+      <div class="panel-heading accordion-toggle question-toggle collapsed navigateActive" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+        <h4 class="panel-title">
+          <button style="border:none !important; background-color:transparent !important; font-size:20px;" class="ing">Kunde</button>
+        </h4>
+      </div>
+    </div>
+    <div class="panel panel-default" (click)="showBySubject('Payments')">
+      <div class="panel-heading accordion-toggle question-toggle collapsed navigateActive" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+        <h4 class="panel-title">
+          <button style="border:none !important; background-color:transparent !important;font-size:20px;" class="ing">Betaling</button>
+        </h4>
+      </div>
+    </div>
+    <div class="panel panel-default" (click)="showBySubject('Delivery')">
+      <div class="panel-heading accordion-toggle question-toggle collapsed navigateActive" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+        <h4 class="panel-title">
+          <button style="border:none !important; background-color:transparent !important;font-size:20px;" class="ing">Levering</button>
+        </h4>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-6 text-center">
+  <h2>Svar</h2>
+  <hr />
+  <div class="panel-group" id="accordion">
+    <ng-container *ngFor="let q of subjectQuestion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{q.QID}}">
+              {{q.Question}}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse{{q.QID}}" class="panel-collapse collapse out">
+          <div class="panel-body">
+            <div class="card col-sm-12" style="border-color:transparent !important;">
+              <div class="card-block">
+                <p class="card-text">{{q.Answer.Answers}}</p>
+                <p class="card-text" style="color:red;" *ngIf="!q.Answer">Spørsmålet er ikke besvart enda</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+

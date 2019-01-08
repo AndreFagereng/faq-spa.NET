@@ -1,0 +1,89 @@
+<div><h2 style="text-align:center;">Kundespørsmål</h2></div>
+<div style="text-align:center;"><p >Oversikt over alle spørsmål innsendt av kunder</p><p>Trykk på spørsmålet for å se svaret!</p></div>
+<div class="col-md-3 text-center" style="top:50px;">
+  <button type="submit" class="btn btn-primary" (click)="showSchema()">{{schemaButtonString}}</button>
+  <hr />
+  <p *ngIf="showSchemaResponse" style="color:green;">Takk for ditt spørsmål! Vi besvarer så fort vi kan.</p>
+  <form [formGroup]="schema" class="w-25 p-3" (ngSubmit)="saveCustomerQuestion()" *ngIf="viewSchema">
+
+    <div class="form-group" >
+      <label for="formGroupExampleInput">Epost</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Epost (Valgfritt)" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Spørsmål</label>
+      <textarea formControlName="question" class="form-control" placeholder="Skriv ditt spørsmål her (maks 250 tegn)" rows="5"></textarea>
+      <p class="alert alert-warning" [hidden]="schema.controls.question.valid || (schema.controls.question.pristine && !submitted)">
+        Spørsmål er obligatorisk. Hvis du bruker spesielle tegn kan dette være grunn til at du får opp denne meldingen.
+      </p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!schema.valid">Send</button>
+
+  </form>
+
+</div>
+<div class="col-md-9 text-center" style="top:50px;">
+
+  <button type="submit" class="btn btn-primary" (click)="showTopQuestions()">{{topQButtonString}}</button>
+  <hr />
+  <div class="loader" *ngIf="loading"></div>
+  <div class="panel-group" id="accordion" *ngIf="showTopRatedQuestion">
+    <ng-container *ngFor="let q of topRatedQuestion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collaps{{q.CQID}}">
+              {{q.Question}}
+            </a>
+          </h4>
+        </div>
+        <div id="collaps{{q.CQID}}" class="panel-collapse collapse out">
+          <div class="panel-body">
+            <div class="card col-sm-12" style="border-color:transparent !important;">
+              <div class="card-block">
+                <p class="card-text">{{q.Answer.Answers}}</p>
+                <p class="card-text" style="color:red;" *ngIf="!q.Answer.Answers">Spørsmålet er ikke besvart</p>
+              </div>
+            </div>
+            <span (click)="incrementThumbs('True', q.CQID)" style="cursor:pointer; color:green;">{{q.Upvotes}}<i class="far fa-thumbs-up" style="color:green;"></i></span>
+            <span (click)="incrementThumbs('False', q.CQID)" style="cursor:pointer; color:orangered;">{{q.Downvotes}}<i class="far fa-thumbs-down" style="color:orangered;"></i></span>
+          </div>
+          <p style="font-size:10px;">Sendt inn av: <span style="color:blue">{{q.Email}}</span></p>
+        </div>
+      </div>
+
+    </ng-container>
+    <hr />
+  </div>
+  <div class="panel-group" id="accordion">
+    <ng-container *ngFor="let q of customerQuestions">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{q.CQID}}">
+              {{q.Question}}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse{{q.CQID}}" class="panel-collapse collapse out">
+          <div class="panel-body">
+            <div class="card col-sm-12" style="border-color:transparent !important;">
+              <div class="card-block">
+                <p class="card-text">{{q.Answer.Answers}}</p>
+                <p class="card-text" style="color:red;" *ngIf="!q.Answer.Answers">Spørsmålet er ikke besvart</p>
+              </div>
+            </div>
+            <span (click)="incrementThumbs('True', q.CQID)" style="cursor:pointer; color:green;">{{q.Upvotes}}<i class="far fa-thumbs-up" style="color:green;"></i></span>
+            <span (click)="incrementThumbs('False', q.CQID)" style="cursor:pointer; color:orangered;">{{q.Downvotes}}<i class="far fa-thumbs-down" style="color:orangered;"></i></span>
+          </div>
+          <p style="font-size:10px;">Sendt inn av: <span style="color:blue">{{q.Email}}</span></p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
+
+
+
+
