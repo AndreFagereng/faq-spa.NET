@@ -1,2 +1,8 @@
 # faq-spa.NET
-Simple FAQ-sp
+School project to implement a simple FAQ-SPA in .NET.
+
+## Implementations
+
+ASP.NET Core 2.0
+EntityFramework
+Angular
