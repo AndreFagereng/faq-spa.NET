@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # FAQ Single-Page-Application
 
 This is a simple FAQ-SPA solution for a School Project implemented in .NET and Angular.
@@ -34,7 +33,7 @@ Build solution
 
 * [Visual Studio](https://visualstudio.microsoft.com/) 
 * [Angular](https://angular.io/docs) 
-* [EntityFramework]
+* [EntityFramework](https://docs.microsoft.com/en-us/ef/ef6/)
 
 
 
