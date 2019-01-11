@@ -31,8 +31,8 @@ Build solution
 
 ## Built With
 
-* [Visual Studio](https://visualstudio.microsoft.com/) 
-* [Angular](https://angular.io/docs) 
+* [ASP.NET CORE 2.0](https://visualstudio.microsoft.com/) 
+* [Angular 5](https://angular.io/docs) 
 * [EntityFramework](https://docs.microsoft.com/en-us/ef/ef6/)
 
 
